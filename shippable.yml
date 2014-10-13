@@ -9,7 +9,13 @@ after_success:
    - mvn clean cobertura:cobertura
    - mvn test
  
-script: mvn --version
+env:
+ - secure: Qvs1cHVfqXsoVxTCnpF4DG+FT4nkzxLhp4xjig2DLQ8CMjrR2ak6oUp+Svgj5c0EDxRATN9yHWO7p0rf0YtY+TnilbSWq4AcveaFxG7sEJCTXJ3dPJ007r7OyPIb0BQr1gv/yUpkbGGhAKHog7DhNRaYDPAkmC6U5ZLecstBgzJyoNJPtJJfLO4gQZ1nZS202whdrAbZgU8Wis12OAMJPgRcDQWWQgkoXdi/SyaxTDE2pZDks/WZzOezmXt1ujfG896SQZzCmnCEYHF4uciKmK8rekAU3Zwm6Vv+wnEKa74j0ekZqK0Lu90PxTPE0ak7T9lPzQ+R3BcAMrktgan4Bg==
+
+script: 
+ - mvn --version
+ - echo $test
+ - echo $name
 
 
 notifications:
