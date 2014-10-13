@@ -13,10 +13,11 @@ script: mvn --version
 
 
 notifications:
-  email: false
+  email: vidya@shippable.com
 
 
 archive: true
 
 parallelized_test: true
+
 cache: true
