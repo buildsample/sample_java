@@ -3,7 +3,7 @@ language: java
 jdk:
    - openjdk7
    - oraclejdk7
-   - openjdk6
+   #- openjdk6
 
 after_success:
    - mvn clean cobertura:cobertura
@@ -19,4 +19,4 @@ notifications:
 archive: true
 
 parallelized_test: true
-#cache: true
+cache: true
