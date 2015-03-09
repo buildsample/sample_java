@@ -10,7 +10,7 @@ install: true
 before_script:
 - mkdir -p shippable/test-results
 - mkdir -p shippable/code-coverage
-- psql -c 'create role billingone with LOGIN PASSWORD `password`;'
+- psql -c 'create role billingone with LOGIN PASSWORD \`password\`;'
 - psql -c 'create database billingone;'
 - psql -c 'create database billingone_test;'
 - psql -c 'grant create on database billingone to billingone;'
