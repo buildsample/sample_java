@@ -8,9 +8,9 @@ git:
 submodules: false
 
 branches:
-only:
-- dev
-- master
+ only:
+  - dev
+  - master
 
 before_install:
 - npm install yo
