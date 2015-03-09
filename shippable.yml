@@ -7,28 +7,28 @@ git:
 submodules: false
 
 branches:
- only:
-  - test-yml
-  - master
+only:
+- dev
+- master
 
 before_install:
-  - npm install yo
-  - npm install bower
-  - npm install grunt-cli
-  
+
+npm install yo
+npm install bower
+npm install grunt-cli
 install:
-  - bower install
-  - npm install
 
+bower install
+npm install
 before_script:
-  - mkdir -p shippable/test-results
-  - mkdir -p shippable/code-coverage
-  - psql -c 'create role billingone with LOGIN PASSWORD ‘password’;'
-  - psql -c 'create database billingone;'
-  - psql -c 'create database billingone_test;'
-  - psql -c 'grant create on database billingone to billingone;'
-  - psql -c 'grant create on database billingone_test to billingone;'
 
+mkdir -p shippable/test-results
+mkdir -p shippable/code-coverage
+psql -c 'create role billingone with LOGIN PASSWORD ‘password’;'
+psql -c 'create database billingone;'
+psql -c 'create database billingone_test;'
+psql -c 'grant create on database billingone to billingone;'
+psql -c 'grant create on database billingone_test to billingone;'
 script:
 
 spring_profiles_active=test gradle cleanTest test
@@ -42,10 +42,3 @@ after_failure:
 after_script:
 # - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u tdd
 # - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
-
-
-archive: true
-
-parallelized_test: true
-
-cache: true
