@@ -8,9 +8,9 @@ git:
 submodules: false
 
 branches:
-only:
-- test-waiting
-- master
+ only:
+  - test-waiting
+  - master
 
 before_install:
 - npm install yo
