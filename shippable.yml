@@ -20,7 +20,8 @@ before_install:
 install:
 - bower install
 - npm install
-- before_script:
+
+before_script:
 - mkdir -p shippable/test-results
 - mkdir -p shippable/code-coverage
 - psql -c 'create role billingone with LOGIN PASSWORD ‘password’;'
