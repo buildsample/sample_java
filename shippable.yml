@@ -1,8 +1,9 @@
 language: java
 
-jdk:
+jdk:oraclejdk8 
 
-oraclejdk8 env: # - NODE_ENV=production
+env: # - NODE_ENV=production
+
 git:
 submodules: false
 
@@ -12,10 +13,10 @@ only:
 - master
 
 before_install:
-
 npm install yo
 npm install bower
 npm install grunt-cli
+
 install:
 
 bower install
