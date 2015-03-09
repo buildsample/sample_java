@@ -1,12 +1,5 @@
 language: java
 
-jdk: oraclejdk8 
-
-env: # - NODE_ENV=production
-
-
-
-
 before_install:
 - npm install yo
 - npm install bower
