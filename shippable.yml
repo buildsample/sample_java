@@ -4,13 +4,8 @@ jdk: oraclejdk8
 
 env: # - NODE_ENV=production
 
-git:
-submodules: false
 
-branches:
- only:
-  - test-waiting
-  - master
+
 
 before_install:
 - npm install yo
