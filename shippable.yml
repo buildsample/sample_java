@@ -1,25 +1,47 @@
 language: java
 
 jdk:
-   - openjdk7
-   - oraclejdk7
-   #- openjdk6
 
+oraclejdk8 env: # - NODE_ENV=production
+git:
+submodules: false
+
+branches:
+ only:
+  - test-yml
+  - master
+
+before_install:
+  - npm install yo
+  - npm install bower
+  - npm install grunt-cli
+  
+install:
+  - bower install
+  - npm install
+
+before_script:
+  - mkdir -p shippable/test-results
+  - mkdir -p shippable/code-coverage
+  - psql -c 'create role billingone with LOGIN PASSWORD ‘password’;'
+  - psql -c 'create database billingone;'
+  - psql -c 'create database billingone_test;'
+  - psql -c 'grant create on database billingone to billingone;'
+  - psql -c 'grant create on database billingone_test to billingone;'
+
+script:
+
+spring_profiles_active=test gradle cleanTest test
+grunt test
 after_success:
-   - mvn clean cobertura:cobertura
-   - mvn test
- 
-env:
- - secure: Qvs1cHVfqXsoVxTCnpF4DG+FT4nkzxLhp4xjig2DLQ8CMjrR2ak6oUp+Svgj5c0EDxRATN9yHWO7p0rf0YtY+TnilbSWq4AcveaFxG7sEJCTXJ3dPJ007r7OyPIb0BQr1gv/yUpkbGGhAKHog7DhNRaYDPAkmC6U5ZLecstBgzJyoNJPtJJfLO4gQZ1nZS202whdrAbZgU8Wis12OAMJPgRcDQWWQgkoXdi/SyaxTDE2pZDks/WZzOezmXt1ujfG896SQZzCmnCEYHF4uciKmK8rekAU3Zwm6Vv+wnEKa74j0ekZqK0Lu90PxTPE0ak7T9lPzQ+R3BcAMrktgan4Bg==
+# - git push git@heroku.com:ultimate-seed.git master
 
-script: 
- - mvn --version
- - echo $test
- - echo $name
+after_failure:
+# -
 
-
-notifications:
-  email: vidya@shippable.com
+after_script:
+# - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u tdd
+# - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
 
 
 archive: true
