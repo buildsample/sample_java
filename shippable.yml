@@ -31,8 +31,9 @@ install:
 
 script:
 
-spring_profiles_active=test gradle cleanTest test
-grunt test
+- spring_profiles_active=test gradle cleanTest test
+- grunt test
+
 after_success:
 # - git push git@heroku.com:ultimate-seed.git master
 
