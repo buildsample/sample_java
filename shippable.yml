@@ -1,4 +1,9 @@
 language: java
 
+before_install:
+- npm install yo
+- npm install bower
+- npm install grunt-cli
+
 install: true
 script: true
