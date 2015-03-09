@@ -30,22 +30,5 @@ before_script:
   - psql -c 'grant create on database billingone_test to billingone;'
 
 script:
-
-spring_profiles_active=test gradle cleanTest test
-grunt test
-after_success:
-# - git push git@heroku.com:ultimate-seed.git master
-
-after_failure:
-# -
-
-after_script:
-# - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u tdd
-# - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
-
-
-archive: true
-
-parallelized_test: true
-
-cache: true
+ - spring_profiles_active=test gradle cleanTest test
+ - grunt test
