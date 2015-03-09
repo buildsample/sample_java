@@ -1,6 +1,6 @@
 language: java
 
-jdk:oraclejdk8 
+jdk: oraclejdk8 
 
 env: # - NODE_ENV=production
 
@@ -13,23 +13,22 @@ only:
 - master
 
 before_install:
-npm install yo
-npm install bower
-npm install grunt-cli
+- npm install yo
+- npm install bower
+- npm install grunt-cli
 
 install:
+- bower install
+- npm install
+- before_script:
+- mkdir -p shippable/test-results
+- mkdir -p shippable/code-coverage
+- psql -c 'create role billingone with LOGIN PASSWORD ‘password’;'
+- psql -c 'create database billingone;'
+- psql -c 'create database billingone_test;'
+- psql -c 'grant create on database billingone to billingone;'
+- psql -c 'grant create on database billingone_test to billingone;'
 
-bower install
-npm install
-before_script:
-
-mkdir -p shippable/test-results
-mkdir -p shippable/code-coverage
-psql -c 'create role billingone with LOGIN PASSWORD ‘password’;'
-psql -c 'create database billingone;'
-psql -c 'create database billingone_test;'
-psql -c 'grant create on database billingone to billingone;'
-psql -c 'grant create on database billingone_test to billingone;'
 script:
 
 spring_profiles_active=test gradle cleanTest test
