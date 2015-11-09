@@ -10,7 +10,7 @@ after_success:
    - mvn test
  
 before_install:
-  - shippable_retry 'if [ $i -eq 3 ]; then echo "done"; else foobar$i; fi'
+  - travis_retry 'if [ $i -eq 3 ]; then echo "done"; else foobar$i; fi'
   
 before_script: 
    - mvn --version
