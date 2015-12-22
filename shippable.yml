@@ -1,4 +1,5 @@
 language: java
+build_image: drydock/u12jav:tip
 
 jdk:
    - openjdk7
