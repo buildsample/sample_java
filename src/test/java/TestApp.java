@@ -1,6 +1,7 @@
 import junit.framework.*;
 import main.App;
 
+
 public class TestApp extends TestCase {
   public void testInsertAndGetData() {
     String result = "";
